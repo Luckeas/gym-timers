@@ -266,13 +266,13 @@ const PHASE_COLORS = {"Prep & Testing":"var(--faint)","Hypertrophy 1":"#e5482b",
 /* ---------- i18n ---------- */
 const STR = {
  en:{today:"Today",program:"Program",progress:"Progress",guide:"Guide",week:"Week",thisWeek:"This week",start:"Start",resume:"Resume",done:"Done",notStarted:"To do",opens:"Opens",nextUp:"Next up",inDays:d=>d===0?"today":d===1?"tomorrow":`in ${d} days`,
-  sets:"sets",lb:"lb",reps:"reps",target:"Target",last:"Last time",demo:"Demo",notes:"Notes for your coach (optional)",finish:"Finish workout",finished:"Workout done",volume:"Volume",setsDone:"Sets",prs:"PRs",back:"Back",rest:"Rest",skip:"Skip",restOver:"Rest done — go",superset:"Superset · go straight to the next exercise",
+  sets:"sets",lb:"lb",reps:"reps",target:"Target",last:"Last time",demo:"Demo",notes:"Notes (optional)",finish:"Finish workout",finished:"Workout done",volume:"Volume",setsDone:"Sets",prs:"PRs",back:"Back",rest:"Rest",skip:"Skip",restOver:"Rest done — go",superset:"Superset · go straight to the next exercise",
   circuit:"Team circuit",openTimer:"Open circuit timer",timerNote:"Coach runs this on the speaker. Everyone follows the same clock.",markCircuit:"Mark circuit done",circuitDone:"Circuit done",
   compliance:"Sessions done",streak:"Week streak",bench1rm:"Bench est. 1RM",pullups:"Pull-ups max",benchmarks:"Benchmarks",yourLevel:"You're at",toNext:"to",records:"Best lifts",noData:"Log a few sessions and your numbers show up here.",
   settings:"Profile & settings",name:"Name",sex:"Benchmark table",women:"Women",men:"Men",bw:"Bodyweight (lb)",lang:"Language",look:"Look",coach:"Coach preview (show all 32 weeks)",sample:"You're looking at sample logs so you can see the app in use.",clear:"Clear sample",close:"Close",
   rules:"How to train",season:"Season calendar",terms:"Terms",locked:"Locked until",dayNames:{upper:"Upper body",lower:"Lower body",full:"Full body",circuit:"Team circuit"},est:"est.",ofSets:"of",guideIntro:"Your coach's rules for every session.",synced:"Program updates from the team master sheet."},
  fr:{today:"Aujourd'hui",program:"Programme",progress:"Progrès",guide:"Guide",week:"Semaine",thisWeek:"Cette semaine",start:"Commencer",resume:"Continuer",done:"Fait",notStarted:"À faire",opens:"Ouvre",nextUp:"Prochain",inDays:d=>d===0?"aujourd'hui":d===1?"demain":`dans ${d} jours`,
-  sets:"séries",lb:"lb",reps:"rép.",target:"Cible",last:"Dernière fois",demo:"Démo",notes:"Notes pour ton coach (optionnel)",finish:"Terminer la séance",finished:"Séance terminée",volume:"Volume",setsDone:"Séries",prs:"Records",back:"Retour",rest:"Repos",skip:"Passer",restOver:"Repos fini — go",superset:"Superset · enchaîne avec le prochain exercice",
+  sets:"séries",lb:"lb",reps:"rép.",target:"Cible",last:"Dernière fois",demo:"Démo",notes:"Notes (optionnel)",finish:"Terminer la séance",finished:"Séance terminée",volume:"Volume",setsDone:"Séries",prs:"Records",back:"Retour",rest:"Repos",skip:"Passer",restOver:"Repos fini — go",superset:"Superset · enchaîne avec le prochain exercice",
   circuit:"Circuit d'équipe",openTimer:"Ouvrir le chrono du circuit",timerNote:"Le coach le fait jouer sur le haut-parleur. Tout le monde suit le même chrono.",markCircuit:"Circuit terminé",circuitDone:"Circuit terminé",
   compliance:"Séances faites",streak:"Semaines de suite",bench1rm:"Développé couché 1RM est.",pullups:"Tractions max",benchmarks:"Standards",yourLevel:"Ton niveau",toNext:"pour",records:"Meilleurs levés",noData:"Note quelques séances et tes chiffres vont apparaître ici.",
   settings:"Profil et réglages",name:"Nom",sex:"Tableau de standards",women:"Femmes",men:"Hommes",bw:"Poids corporel (lb)",lang:"Langue",look:"Style",coach:"Aperçu coach (voir les 32 semaines)",sample:"Ce sont des données d'exemple pour voir l'app en action.",clear:"Effacer l'exemple",close:"Fermer",
@@ -317,7 +317,7 @@ function dayTitle(d){
   const types=d.items.map(i=>i.type);const legs=types.filter(t=>t==="Legs").length,ub=types.filter(t=>t==="Push"||t==="Pull").length;
   const k=legs>=ub?"lower":legs>=2?"full":"upper";return T("dayNames")[k];
 }
-function restSecs(r){r=String(r||"").trim();if(/super/i.test(r))return 0;const m=r.match(/^(\d+)(?:-(\d+))?$/);if(!m)return 90;const a=+m[1],b=+(m[2]||m[1]);return Math.round((a+b)/2*60)}
+function restSecs(r){r=String(r||"").trim();if(/super/i.test(r))return 0;const m=r.match(/^(\d+)(?:-(\d+))?$/);if(!m)return 90;return +(m[2]||m[1])*60}
 function restLabel(r){r=String(r||"");if(/super/i.test(r))return "Superset";if(/^\d+(-\d+)?$/.test(r))return r.replace("-","–")+" min";return r}
 function repsTarget(r){r=String(r||"").replace(/^x/i,"");if(/conti/i.test(r))return "max";return r.replace("-","–")}
 function repsPlaceholder(r){const m=String(r||"").match(/(\d+)(?:-(\d+))?/);return m?(m[2]||m[1]):""}
@@ -649,18 +649,25 @@ app.addEventListener("click",e=>{
   const bw=t.closest("#backWeek");if(bw){stopRest();go({name:"program",week:+bw.dataset.week});return}
   if(t.closest("#openSettings")){openSettings();return}
   if(t.closest("#clearSample")){S.logs={};S.notes={};S.days={};S.sample=false;save();toast("Sample cleared");render();return}
-  const chk=t.closest("[data-check]");if(chk){
-    const row=chk.closest(".set");const k=row.dataset.k;const v=S.logs[k]||{};
-    const wt=row.querySelector('[data-f="wt"]'),rp=row.querySelector('[data-f="reps"]');
-    if(!v.done){v.wt=wt.value||(wt.placeholder&&/^\d/.test(wt.placeholder)?wt.placeholder:"");v.reps=rp.value||(/^\d/.test(rp.placeholder)?rp.placeholder:"");wt.value=v.wt;rp.value=v.reps;v.done=true;startRest(+row.dataset.rest)}
-    else v.done=false;
-    S.logs[k]=v;S.sample=S.sample;save();row.classList.toggle("done",v.done);updateCount();return}
+  const chk=t.closest("[data-check]");if(chk){toggleSet(chk.closest(".set"));return}
   if(t.closest("#finish")){finishWorkout(VIEW.w,VIEW.d);return}
   if(t.closest("#circuitDone")){const k=`${VIEW.w}|${VIEW.d}`;if(S.days[k])delete S.days[k];else S.days[k]=Date.now();save();render();return}
 });
 app.addEventListener("input",e=>{
   const f=e.target.dataset.f;if(f){const row=e.target.closest(".set");const k=row.dataset.k;S.logs[k]=Object.assign(S.logs[k]||{},{[f]:e.target.value});save()}
   const n=e.target.dataset.note;if(n){S.notes[n]=e.target.value;save()}
+});
+function toggleSet(row,forceDone){
+  const k=row.dataset.k;const v=S.logs[k]||{};
+  const wt=row.querySelector('[data-f="wt"]'),rp=row.querySelector('[data-f="reps"]');
+  if(forceDone||!v.done){if(v.done)return;v.wt=wt.value||(wt.placeholder&&/^\d/.test(wt.placeholder)?wt.placeholder:"");v.reps=rp.value||(/^\d/.test(rp.placeholder)?rp.placeholder:"");wt.value=v.wt;rp.value=v.reps;v.done=true;startRest(+row.dataset.rest)}
+  else v.done=false;
+  S.logs[k]=v;save();row.classList.toggle("done",v.done);updateCount();
+}
+// Typing the reps (and leaving the box) completes the set and starts the rest timer.
+app.addEventListener("change",e=>{
+  if(e.target.dataset.f!=="reps"||!e.target.value)return;
+  toggleSet(e.target.closest(".set"),true);
 });
 function updateCount(){if(VIEW.name!=="workout")return;const d=WEEKS[VIEW.w-1].days.find(x=>x.day===VIEW.d);let total=0,done=0;
   d.items.forEach((it,i)=>(it.sets||[]).forEach((_,s)=>{total++;if(S.logs[keyOf(VIEW.w,VIEW.d,i,s)]?.done)done++}));
