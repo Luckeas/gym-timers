@@ -61,7 +61,7 @@ a{color:inherit}
 
 /* tab bar */
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.tabs .inner{max-width:540px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+.tabs .inner{max-width:540px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
 .tab{border:0;background:none;padding:10px 4px 12px;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--faint);font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 .tab svg{width:22px;height:22px}
 .tab[aria-current="page"]{color:var(--fg)}
@@ -267,17 +267,17 @@ const BENCH = {
   bench:[["Entry",55,65,75,85,95,125,145,165,185,205],["Regional",70,80,90,100,110,145,165,185,205,225],["Provincial",85,95,105,115,125,165,185,205,225,245],["National",100,110,120,130,140,185,205,225,245,265],["CCWC",115,125,135,145,155,205,225,245,265,285],["NT Entry",130,140,150,160,170,225,245,265,285,305],["NT Standard",145,155,165,175,185,245,265,285,305,325],["NT Strong",160,170,180,190,200,265,285,305,325,345]],
   pullups:[["Entry",.5,.5,.5,.25,.25,7,6,5,4,3],["Regional",1,1,.5,.5,.25,12,10,9,8,6],["Provincial",3,2,1,1,.5,18,15,14,12,10],["National",4,3,2,1,1,21,18,16,15,12],["CCWC",10,8,6,4,2,24,22,20,18,15],["NT Entry",12,10,8,6,3,36,32,28,24,20],["NT Standard",18,15,12,8,4,45,40,35,30,25],["NT Strong",24,20,16,12,8,50,45,40,35,30]]
 };
-const PHASE_COLORS = {"Prep & Testing":"var(--faint)","Hypertrophy 1":"#e5482b","Hypertrophy 2":"#c2361d","Strength":"#3d7bd9","Power & Strength":"#f2b233","Power & Endurance":"#2fb7a4","Deload":"#7b7f86","Test week":"#b36ae2"};
+const PHASE_COLORS = {"Adaptation":"#8a8f98","Maintenance":"#5fa8d3","Active Recovery":"#9b8fd6","Prep":"#c9a227","Prep & Testing":"var(--faint)","Hypertrophy 1":"#e5482b","Hypertrophy 2":"#c2361d","Strength":"#3d7bd9","Power & Strength":"#f2b233","Power & Endurance":"#2fb7a4","Deload":"#7b7f86","Test week":"#b36ae2"};
 
 /* ---------- i18n ---------- */
 const STR = {
- en:{today:"Today",program:"Program",progress:"Progress",guide:"Guide",week:"Week",thisWeek:"This week",start:"Start",resume:"Resume",done:"Done",notStarted:"To do",opens:"Opens",nextUp:"Next up",inDays:d=>d===0?"today":d===1?"tomorrow":`in ${d} days`,
+ en:{today:"Today",program:"Program",progress:"Progress",guide:"Guide",seasonTab:"Season",seasonIntro:"Your training blocks and the dates that matter",blocks:"Training blocks",dates:"Key dates",now:"Now",weeksWord:"Weeks",week:"Week",thisWeek:"This week",start:"Start",resume:"Resume",done:"Done",notStarted:"To do",opens:"Opens",nextUp:"Next up",inDays:d=>d===0?"today":d===1?"tomorrow":`in ${d} days`,
   sets:"sets",lb:"lb",reps:"reps",target:"Target",last:"Last time",demo:"Demo",notes:"Notes (optional)",finish:"Finish workout",finished:"Workout done",volume:"Volume",setsDone:"Sets",prs:"PRs",back:"Back",rest:"Rest",skip:"Skip",restOver:"Rest done — go",superset:"Superset · go straight to the next exercise",
   circuit:"Team circuit",openTimer:"Open circuit timer",timerNote:"Coach runs this on the speaker. Everyone follows the same clock.",markCircuit:"Mark circuit done",circuitDone:"Circuit done",
   compliance:"Sessions done",streak:"Week streak",bench1rm:"Bench est. 1RM",pullups:"Pull-ups max",benchmarks:"Benchmarks",yourLevel:"You're at",toNext:"to",records:"Best lifts",noData:"Log a few sessions and your numbers show up here.",
   settings:"Profile & settings",name:"Name",sex:"Benchmark table",women:"Women",men:"Men",bw:"Bodyweight (lb)",lang:"Language",look:"Look",coach:"Coach preview (show all 32 weeks)",sample:"You're looking at sample logs so you can see the app in use.",clear:"Clear sample",close:"Close",
   rules:"How to train",season:"Season calendar",terms:"Terms",locked:"Locked until",dayNames:{upper:"Upper body",lower:"Lower body",full:"Full body",circuit:"Team circuit"},est:"est.",ofSets:"of",guideIntro:"Your coach's rules for every session.",synced:"Program updates from the team master sheet."},
- fr:{today:"Aujourd'hui",program:"Programme",progress:"Progrès",guide:"Guide",week:"Semaine",thisWeek:"Cette semaine",start:"Commencer",resume:"Continuer",done:"Fait",notStarted:"À faire",opens:"Ouvre",nextUp:"Prochain",inDays:d=>d===0?"aujourd'hui":d===1?"demain":`dans ${d} jours`,
+ fr:{today:"Aujourd'hui",program:"Programme",progress:"Progrès",guide:"Guide",seasonTab:"Saison",seasonIntro:"Tes blocs d'entraînement et les dates importantes",blocks:"Blocs d'entraînement",dates:"Dates importantes",now:"En cours",weeksWord:"Semaines",week:"Semaine",thisWeek:"Cette semaine",start:"Commencer",resume:"Continuer",done:"Fait",notStarted:"À faire",opens:"Ouvre",nextUp:"Prochain",inDays:d=>d===0?"aujourd'hui":d===1?"demain":`dans ${d} jours`,
   sets:"séries",lb:"lb",reps:"rép.",target:"Cible",last:"Dernière fois",demo:"Démo",notes:"Notes (optionnel)",finish:"Terminer la séance",finished:"Séance terminée",volume:"Volume",setsDone:"Séries",prs:"Records",back:"Retour",rest:"Repos",skip:"Passer",restOver:"Repos fini — go",superset:"Superset · enchaîne avec le prochain exercice",
   circuit:"Circuit d'équipe",openTimer:"Ouvrir le chrono du circuit",timerNote:"Le coach le fait jouer sur le haut-parleur. Tout le monde suit le même chrono.",markCircuit:"Circuit terminé",circuitDone:"Circuit terminé",
   compliance:"Séances faites",streak:"Semaines de suite",bench1rm:"Développé couché 1RM est.",pullups:"Tractions max",benchmarks:"Standards",yourLevel:"Ton niveau",toNext:"pour",records:"Meilleurs levés",noData:"Note quelques séances et tes chiffres vont apparaître ici.",
@@ -308,7 +308,7 @@ let CUR=currentWeekNum();
 function unlocked(n){return LIVE||S.profile.coach||n<=CUR}
 function fmtDate(d,long){return d.toLocaleDateString(S.profile.lang==="fr"?"fr-CA":"en-CA",long?{weekday:"short",month:"short",day:"numeric"}:{month:"short",day:"numeric"})}
 function phaseOf(w){
-  if(LIVE)return w.label||"";
+  if(LIVE){const sw=SEASON&&seasonWeekAt(weekDate(w));return (sw&&sw.focus)||w.label||"";}
   if(/deload/i.test(w.label))return "Deload";
   if(/test/i.test(w.label))return "Test week";
   if(w.week<=3)return "Prep & Testing";
@@ -377,6 +377,7 @@ const I={
  today:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h3M18 12h3M6 8v8M18 8v8M9 6v12M15 6v12M9 12h6"/></svg>',
  program:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>',
  progress:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M5 16l4-5 4 3 6-8"/></svg>',
+ season:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 18h4l3-9 4 12 3-7h4"/></svg>',
  guide:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M8 7h7"/></svg>',
  play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>',
  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',
@@ -389,9 +390,9 @@ let VIEW={name:"today"};
 const app=document.getElementById("app");
 function go(v){VIEW=v;render();window.scrollTo(0,0)}
 function renderTabs(){
-  const tabs=["today","program","progress","guide"];
+  const tabs=["today","program","season","progress","guide"];
   const active=VIEW.name==="workout"?"program":VIEW.name;
-  document.getElementById("tabs").innerHTML=tabs.map(t=>`<button class="tab" data-tab="${t}" ${active===t?'aria-current="page"':""}>${I[t]}<span>${T(t)}</span></button>`).join("");
+  document.getElementById("tabs").innerHTML=tabs.map(t=>`<button class="tab" data-tab="${t}" ${active===t?'aria-current="page"':""}>${I[t]}<span>${t==="season"?T("seasonTab"):T(t)}</span></button>`).join("");
 }
 document.getElementById("tabs").addEventListener("click",e=>{const b=e.target.closest("[data-tab]");if(b)go({name:b.dataset.tab})});
 
@@ -648,6 +649,7 @@ function render(){
   else if(v.name==="workout")html=viewWorkout(v.w,v.d);
   else if(v.name==="progress")html=viewProgress();
   else if(v.name==="guide")html=viewGuide();
+  else if(v.name==="season")html=viewSeason();
   app.innerHTML=html;renderTabs();
 }
 app.addEventListener("click",e=>{
@@ -695,6 +697,67 @@ document.getElementById("overlay").addEventListener("input",e=>{
   if(e.target.id==="pBw"){S.profile.bw=e.target.value;save()}
 });
 
+
+/* ---------- season (periodization) ---------- */
+let SEASON=null;
+const MONTH_IX=m=>MONTHS.findIndex(x=>x.toLowerCase().startsWith(String(m).toLowerCase().slice(0,3)));
+function seasonYear(mi){return mi>=7?2026:2027}
+function parsePeriod(raw){
+  if(!raw||!raw.length)return null;
+  const byN={};const events=[];
+  // dated events list at the top: a name followed within a few cells by "Month D, YYYY"
+  raw.slice(0,8).forEach(r=>{for(let c=0;c<r.length;c++){const name=String(r[c]||"").trim();if(!name||/\d{4}$/.test(name))continue;
+    for(let k=c+1;k<=c+6&&k<r.length;k++){const m=String(r[k]||"").match(/^([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})$/);
+      if(m){const mi=MONTH_IX(m[1]);if(mi>=0)events.push([`${m[3]}-${String(mi+1).padStart(2,"0")}-${String(+m[2]).padStart(2,"0")}`,name.replace(/\s+$/,"")]);break}}}});
+  let week1=null;
+  for(let i=0;i<raw.length;i++){
+    const r=raw[i];if(String(r[0]).trim().toUpperCase()!=="WEEK")continue;
+    const monthRow=raw[i-1]||[],startRow=raw[i+1]||[];
+    let curMonth="";const fill={};
+    for(let c=1;c<r.length;c++){if(monthRow[c])curMonth=monthRow[c];
+      const n=parseInt(r[c],10);if(!n)continue;
+      if(!week1&&n===1){const m=String(startRow[c]).match(/-(\d+)/);const mi=MONTH_IX(curMonth);if(m&&mi>=0)week1=new Date(seasonYear(mi),mi,+m[1])}
+      byN[n]=byN[n]||{n};
+      for(let j=i+3;j<Math.min(raw.length,i+9);j++){const lab=String(raw[j][0]||"").trim().toLowerCase();if(!lab)continue;if(lab==="periodization")break;
+        const v=String(raw[j][c]||"").trim();
+        if(lab==="gym focus"||lab==="season"){if(v)fill[lab]=v;if(fill[lab])byN[n][lab==="gym focus"?"focus":"season"]=fill[lab]}
+        else if(lab==="tests"&&v)byN[n].test=v;
+        else if(lab.startsWith("important")&&v)byN[n].event=v.replace(/\n/g," · ");}
+    }
+  }
+  if(!week1)return null;
+  const weeks=Object.values(byN).sort((a,b)=>a.n-b.n).map(w=>({...w,start:new Date(week1.getTime()+(w.n-1)*7*864e5)}));
+  events.sort((a,b)=>a[0]<b[0]?-1:1);
+  return {weeks,events};
+}
+function teamSeason(){return{weeks:WEEKS.map(w=>({n:w.week,start:weekDate(w),focus:phaseOf(w),season:"Winter Season"})),events:EVENTS}}
+function seasonWeekAt(d){if(!SEASON||isNaN(d))return null;let hit=null;for(const w of SEASON.weeks){if(w.start<=d)hit=w}return hit}
+function viewSeason(){
+  const S0=SEASON||teamSeason();if(!S0||!S0.weeks.length)return brandBar()+`<div class="wrap"><section><h1>${T("seasonTab")}</h1><p class="muted">No season plan yet.</p></section></div>`;
+  const now=(()=>{let h=null;for(const w of S0.weeks)if(w.start<=TODAY)h=w;return h})();
+  const runs=[];S0.weeks.forEach(w=>{const f=w.focus||"—";const last=runs[runs.length-1];if(last&&last.focus===f&&last.to===w.n-1){last.to=w.n;last.end=w.start}else runs.push({focus:f,from:w.n,to:w.n,start:w.start,end:w.start})});
+  const total=S0.weeks.length;
+  const strip=runs.map(r=>`<i style="flex:${r.to-r.from+1};background:${phaseColor(r.focus)}" title="${esc(r.focus)}"></i>`).join("");
+  const pos=now?Math.max(0,S0.weeks.indexOf(now))/total*100:-1;
+  const end=d=>new Date(d.getTime()+6*864e5);
+  const dates=S0.events.map(([d,n])=>[new Date(d+"T00:00"),n]);
+  return brandBar()+`<div class="wrap">
+   <section><div class="eyebrow">${T("seasonIntro")}</div><h1>${T("seasonTab")}</h1>
+    <div style="position:relative;padding-top:6px"><div style="display:flex;gap:2px;height:14px;border-radius:4px;overflow:hidden">${strip}</div>
+     ${pos>=0?`<div style="position:absolute;top:0;bottom:-6px;left:calc(${pos}% );width:2px;background:var(--fg)"></div>`:""}</div>
+    ${now?`<div class="next">${I.chev}<span>${T("week")} <b>${now.n}</b>${now.focus?` · <b>${esc(now.focus)}</b>`:""}${now.season?` · ${esc(now.season)}`:""}</span></div>`:""}
+   </section>
+   <section><h2>${T("blocks")}</h2>
+    <div class="card" style="padding:4px 14px">${runs.filter(r=>r.focus!=="—").map(r=>{const cur=now&&now.n>=r.from&&now.n<=r.to,past=now&&now.n>r.to;
+      return `<div class="ev ${past?"past":""}" style="grid-template-columns:12px 1fr auto;align-items:center"><span class="dot" style="background:${phaseColor(r.focus)}"></span>
+        <span><b>${esc(r.focus)}</b><br><span class="muted small">${T("weeksWord")} ${r.from}${r.to>r.from?"–"+r.to:""} · ${fmtDate(r.start)} – ${fmtDate(end(r.end))}</span></span>
+        ${cur?`<span class="state part">${T("now")}</span>`:""}</div>`}).join("")}</div></section>
+   <section><h2>${T("dates")}</h2>
+    <div class="card" style="padding:4px 14px">${dates.length?dates.map(([dt,n])=>{const days=Math.round((dt-TODAY)/864e5);
+      return `<div class="ev ${days<0?"past":""}"><span class="dt">${fmtDate(dt)}</span><span>${esc(n)}${days>=0&&days<=60?` <span class="muted small">· ${T("inDays")(days)}</span>`:""}</span></div>`}).join(""):`<p class="muted small">—</p>`}</div></section>
+  </div>`;
+}
+
 /* ---------- live mode: read from and write to the athlete's own Google Sheet ---------- */
 function parseLogged(load,repsCell){
   load=String(load||"").trim();
@@ -721,7 +784,7 @@ function findKey(tab,row,col){
   return null;
 }
 function applyLive(data){
-  TEAM.name=data.athlete.name;EVENTS=[];
+  TEAM.name=data.athlete.name;EVENTS=[];SEASON=parsePeriod(data.period);if(SEASON)EVENTS=SEASON.events;
   WEEKS=data.weeks.map((w,wi)=>({week:wi+1,name:w.name,label:w.label,date:w.date,tab:w.tab,
     days:w.days.map(d=>({day:d.day,summary:d.summary,items:d.items.map(it=>({...it,
       sets:it.sets.map(s=>{const p=parseLogged(s.load,s.reps);return{load:p.presc,reps:s.reps,col:s.col,_logged:p.logged}})}))}))}));
