@@ -406,7 +406,8 @@ function viewToday(){
   const nextEv=EVENTS.map(([d,n])=>[new Date(d+"T00:00"),n]).find(([d])=>d>=TODAY);
   const days=w.days;
   const firstOpen=days.find(d=>dayStatus(w.week,d.day)!=="done");
-  const bar=WEEKS.map(x=>`<i class="${x.week<CUR?"past":""} ${x.week===CUR?"now":""}" style="background:${phaseColor(phaseOf(x))}" title="Week ${WN(x.week)}"></i>`).join("");
+  const sNow=LIVE&&SEASON?seasonWeekAt(TODAY):null;
+  const bar=LIVE&&SEASON?SEASON.weeks.map(x=>`<i class="${sNow&&x.n<sNow.n?"past":""} ${sNow&&x.n===sNow.n?"now":""}" style="background:${phaseColor(x.focus||"")}" title="Week ${x.n}"></i>`).join(""):WEEKS.map(x=>`<i class="${x.week<CUR?"past":""} ${x.week===CUR?"now":""}" style="background:${phaseColor(phaseOf(x))}" title="Week ${WN(x.week)}"></i>`).join("");
   return brandBar()+`
   <div class="wrap">
    ${S.sample?`<div style="padding-top:12px"><div class="banner"><span>${T("sample")}</span><button id="clearSample">${T("clear")}</button></div></div>`:""}
@@ -414,8 +415,8 @@ function viewToday(){
      <div class="eyebrow">${T("week")} · ${fmtDate(weekDate(w))}</div>
      <div class="row"><div class="bigweek num">${LIVE?esc(w.name):String(w.week).padStart(2,"0")}</div>
        <div style="display:grid;gap:8px;padding-bottom:6px">${ph?`<span class="phase"><span class="dot" style="background:${phaseColor(ph)}"></span>${esc(ph)}</span>`:""}
-       <span class="muted small">${T("week")} ${w.week} / ${WEEKS.length}</span></div></div>
-     <div class="weekbar" aria-hidden="true" style="grid-template-columns:repeat(${WEEKS.length},1fr)">${bar}</div>
+       <span class="muted small">${T("week")} ${sNow?sNow.n:w.week} / ${LIVE&&SEASON?SEASON.weeks.length:WEEKS.length}</span></div></div>
+     <div class="weekbar" aria-hidden="true" style="grid-template-columns:repeat(${LIVE&&SEASON?SEASON.weeks.length:WEEKS.length},1fr)">${bar}</div>
      ${nextEv?`<div class="next">${I.chev}<span>${T("nextUp")}: <b>${esc(nextEv[1])}</b> · ${fmtDate(nextEv[0],true)} · ${T("inDays")(Math.round((nextEv[0]-TODAY)/864e5))}</span></div>`:""}
    </div>
    <section>
@@ -437,16 +438,24 @@ function dayCard(wn,d,featured){
 /* ---------- PROGRAM ---------- */
 function viewProgram(){
   return brandBar()+`<div class="wrap"><section>
-   <div class="eyebrow">${LIVE?"":TEAM.season+" · "}${WEEKS.length} ${T("week").toLowerCase()}s</div>
+   <div class="eyebrow">${LIVE?"":TEAM.season+" · "}${LIVE&&SEASON?SEASON.weeks.length:WEEKS.length} ${T("week").toLowerCase()}s</div>
    <h1>${T("program")}</h1>
-   <div class="legend" ${LIVE?"hidden":""}>${Object.entries(PHASE_COLORS).map(([k,v])=>`<span><i class="dot" style="background:${v}"></i>${k}</span>`).join("")}</div>
+   <div class="legend">${Object.entries(PHASE_COLORS).filter(([k])=>!LIVE||(SEASON&&SEASON.weeks.some(w=>w.focus===k))).map(([k,v])=>`<span><i class="dot" style="background:${v}"></i>${k}</span>`).join("")}</div>
    <div class="weeks">${WEEKS.map(w=>{const ok=unlocked(w.week);const ph=phaseOf(w);
      const pips=w.days.map(d=>`<i class="${dayStatus(w.week,d.day)==="done"?"on":""}"></i>`).join("");
      return `<button class="wk ${ok?"":"locked"} ${w.week===CUR?"current":""}" ${ok?`data-week="${w.week}"`:"disabled"}>
        <span class="n num">${WN(w.week)}</span>
        <div><div class="l"><span class="dot" style="display:inline-block;margin-right:6px;background:${phaseColor(ph)}"></span>${esc(ph)}</div><div class="d">${fmtDate(weekDate(w),true)}${ok?"":` · ${T("locked")} ${fmtDate(weekDate(w))}`}</div></div>
-       ${ok?`<span class="pips">${pips}</span>`:I.lock}</button>`}).join("")}</div>
+       ${ok?`<span class="pips">${pips}</span>`:I.lock}</button>`}).join("")}${futureWeeks().map(sw=>`<button class="wk locked" disabled>
+       <span class="n num">${sw.n}</span>
+       <div><div class="l"><span class="dot" style="display:inline-block;margin-right:6px;background:${phaseColor(sw.focus||"")}"></span>${esc(sw.focus||"")}</div><div class="d">${fmtDate(sw.start,true)} · ${T("locked")} ${fmtDate(sw.start)}</div></div>
+       ${I.lock}</button>`).join("")}</div>
   </section></div>`;
+}
+function futureWeeks(){
+  if(!LIVE||!SEASON)return [];
+  const dates=WEEKS.map(w=>weekDate(w).getTime()).filter(x=>!isNaN(x));const last=dates.length?Math.max(...dates):-Infinity;
+  return SEASON.weeks.filter(sw=>sw.start.getTime()>last+3*864e5&&!WEEKS.some(w=>String(w.name)===String(sw.n)));
 }
 function viewWeek(n){
   const w=WEEKS[n-1];const ph=phaseOf(w);
@@ -726,7 +735,7 @@ function parsePeriod(raw){
     }
   }
   if(!week1)return null;
-  const weeks=Object.values(byN).sort((a,b)=>a.n-b.n).map(w=>({...w,start:new Date(week1.getTime()+(w.n-1)*7*864e5)}));
+  const weeks=Object.values(byN).sort((a,b)=>a.n-b.n).map(w=>({...w,start:new Date(week1.getFullYear(),week1.getMonth(),week1.getDate()+(w.n-1)*7)}));
   events.sort((a,b)=>a[0]<b[0]?-1:1);
   return {weeks,events};
 }
@@ -739,7 +748,7 @@ function viewSeason(){
   const total=S0.weeks.length;
   const strip=runs.map(r=>`<i style="flex:${r.to-r.from+1};background:${phaseColor(r.focus)}" title="${esc(r.focus)}"></i>`).join("");
   const pos=now?Math.max(0,S0.weeks.indexOf(now))/total*100:-1;
-  const end=d=>new Date(d.getTime()+6*864e5);
+  const end=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+6);
   const dates=S0.events.map(([d,n])=>[new Date(d+"T00:00"),n]);
   return brandBar()+`<div class="wrap">
    <section><div class="eyebrow">${T("seasonIntro")}</div><h1>${T("seasonTab")}</h1>
