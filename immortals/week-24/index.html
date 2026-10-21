@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16181d">
+<title>Immortals Week 24 · Day 4 Timer</title>
+<meta name="description" content="Power &amp; Endurance · 4 pods × 4 · 40s on / 20s off · 3 rounds · not racing APEX">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/timer.css">
+</head>
+<body>
+<div class="board" id="board" data-phase="idle">
+  <div class="top">
+    <div class="wk" id="wk">Day 4<small id="sum"></small></div>
+    <div class="remain" id="remain"></div>
+  </div>
+  <div class="main" aria-live="polite">
+    <div class="phase" id="phase">Get ready</div>
+    <div class="clock" id="clock">0:10</div>
+    <div class="now" id="now"></div>
+    <div class="next" id="next"></div>
+    <div class="where" id="where"></div>
+  </div>
+  <div style="display:grid;gap:12px">
+    <div class="bar"><i id="bar"></i></div>
+    <div class="controls">
+      <button id="back" aria-label="Back one step">◀◀</button>
+      <button id="go" class="primary">Start</button>
+      <button id="skip" aria-label="Skip to next step">▶▶</button>
+      <button id="reset">Reset</button>
+      <button id="sound" aria-label="Change the sound">Martin</button>
+    </div>
+    <div class="hint" id="hint"></div>
+  </div>
+</div>
+<section class="plan">
+  <div class="plan-inner">
+    <h2 id="plan-title">Day 4 circuit</h2>
+    <p id="plan-desc"></p>
+    <div class="groups" id="groups"></div>
+  </div>
+</section>
+<script>window.CIRCUIT = {"team": "Immortals", "week": "Week 24", "title": "Week 24", "summary": "Power & Endurance · 4 pods × 4 · 40s on / 20s off · 3 rounds · not racing APEX", "getReady": 10, "format": "pods", "params": {"rounds": 3, "work": 40, "rest": 20, "change": 60}, "groups": [{"label": "Pod A", "meta": "3 rounds · 40s on / 20s off", "items": [{"code": "A1", "name": "Bench Press Touch & Go", "rx": "", "note": "Moderate load, fast"}, {"code": "A2", "name": "Db Seal Row", "rx": "", "note": "Fast pull"}, {"code": "A3", "name": "Box Jumps", "rx": "", "note": "Step down"}, {"code": "A4", "name": "Med Ball Slams", "rx": "", "note": "Slam hard"}]}, {"label": "Pod B", "meta": "3 rounds · 40s on / 20s off", "items": [{"code": "B1", "name": "Db Push Press", "rx": "", "note": "Legs drive it"}, {"code": "B2", "name": "Chin-Ups", "rx": "", "note": "Band if needed"}, {"code": "B3", "name": "Db Reverse Lunge", "rx": "", "note": "Alternate legs"}, {"code": "B4", "name": "Kettle Bell Swings", "rx": "", "note": "Snap the hips"}]}, {"label": "Pod C", "meta": "3 rounds · 40s on / 20s off", "items": [{"code": "C1", "name": "Dumbbell Clean into Rotational Press", "rx": "", "note": "Pivot back foot"}, {"code": "C2", "name": "Db Front Squat", "rx": "", "note": "Fast up"}, {"code": "C3", "name": "Plyometric Push-Ups", "rx": "", "note": "Explode off floor"}, {"code": "C4", "name": "Mountain Climbers", "rx": "", "note": "Fast feet"}]}, {"label": "Pod D", "meta": "3 rounds · 40s on / 20s off", "items": [{"code": "D1", "name": "Hammer Curls", "rx": "", "note": "No swinging"}, {"code": "D2", "name": "Db Skull Crushers (get a lat stretch)", "rx": "", "note": "Elbows in"}, {"code": "D3", "name": "Wall Balls", "rx": "", "note": "Throw high"}, {"code": "D4", "name": "Medicine Ball Rotational Punch Slam", "rx": "", "note": "Rotate and slam"}]}], "startText": "Go to your first station", "firstWhere": "Pod 1 of 4 · Round 1 of 3", "howTo": "Each group starts at a different station and rotates after every interval. 1 min between pods.", "date": "Mar 15"};</script>
+<script src="../../assets/voices.js"></script>
+<script src="../../assets/timer.js"></script>
+</body>
+</html>

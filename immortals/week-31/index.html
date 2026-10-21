@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16181d">
+<title>Immortals Week 31 · Day 4 Timer</title>
+<meta name="description" content="Power &amp; Endurance · 8 Tabatas · 20s on / 10s off × 8 · 1 min between">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/timer.css">
+</head>
+<body>
+<div class="board" id="board" data-phase="idle">
+  <div class="top">
+    <div class="wk" id="wk">Day 4<small id="sum"></small></div>
+    <div class="remain" id="remain"></div>
+  </div>
+  <div class="main" aria-live="polite">
+    <div class="phase" id="phase">Get ready</div>
+    <div class="clock" id="clock">0:10</div>
+    <div class="now" id="now"></div>
+    <div class="next" id="next"></div>
+    <div class="where" id="where"></div>
+  </div>
+  <div style="display:grid;gap:12px">
+    <div class="bar"><i id="bar"></i></div>
+    <div class="controls">
+      <button id="back" aria-label="Back one step">◀◀</button>
+      <button id="go" class="primary">Start</button>
+      <button id="skip" aria-label="Skip to next step">▶▶</button>
+      <button id="reset">Reset</button>
+      <button id="sound" aria-label="Change the sound">Martin</button>
+    </div>
+    <div class="hint" id="hint"></div>
+  </div>
+</div>
+<section class="plan">
+  <div class="plan-inner">
+    <h2 id="plan-title">Day 4 circuit</h2>
+    <p id="plan-desc"></p>
+    <div class="groups" id="groups"></div>
+  </div>
+</section>
+<script>window.CIRCUIT = {"team": "Immortals", "week": "Week 31", "title": "Week 31", "summary": "Power & Endurance · 8 Tabatas · 20s on / 10s off × 8 · 1 min between", "getReady": 10, "format": "tabata", "params": {"rounds": 8, "work": 20, "rest": 10, "between": 60}, "groups": [{"label": "Tabata A", "meta": "8 × 20s on / 10s off, alternating the two", "items": [{"code": "A1", "name": "Db Push Press", "rx": "", "note": "Legs drive it"}, {"code": "A2", "name": "Broad Jumps", "rx": "", "note": "Stick the landing"}]}, {"label": "Tabata B", "meta": "8 × 20s on / 10s off, alternating the two", "items": [{"code": "B1", "name": "Bench Press Touch & Go", "rx": "", "note": "Light, fast reps"}, {"code": "B2", "name": "Db Seal Row", "rx": "", "note": "Fast pull"}]}, {"label": "Tabata C", "meta": "8 × 20s on / 10s off, alternating the two", "items": [{"code": "C1", "name": "Alternating Db Snatch", "rx": "", "note": "Switch arms"}, {"code": "C2", "name": "Burpees", "rx": "", "note": "Chest to floor"}]}, {"label": "Tabata D", "meta": "8 × 20s on / 10s off, alternating the two", "items": [{"code": "D1", "name": "Kettle Bell Swings", "rx": "", "note": "Snap the hips"}, {"code": "D2", "name": "Plyometric Push-Ups", "rx": "", "note": "Explode off floor"}]}, {"label": "Tabata E", "meta": "8 × 20s on / 10s off, alternating the two", "items": [{"code": "E1", "name": "Db Front Squat", "rx": "", "note": "Fast up"}, {"code": "E2", "name": "Chin-Ups", "rx": "", "note": "Band if needed"}]}, {"label": "Tabata F", "meta": "8 × 20s on / 10s off, alternating the two", "items": [{"code": "F1", "name": "Db Reverse Lunge", "rx": "", "note": "Alternate legs"}, {"code": "F2", "name": "Med Ball Slams", "rx": "", "note": "Slam hard"}]}, {"label": "Tabata G", "meta": "8 × 20s on / 10s off, alternating the two", "items": [{"code": "G1", "name": "Hammer Curls", "rx": "", "note": "No swinging"}, {"code": "G2", "name": "Db Skull Crushers (get a lat stretch)", "rx": "", "note": "Elbows in"}]}, {"label": "Tabata H", "meta": "8 × 20s on / 10s off, alternating the two", "items": [{"code": "H1", "name": "Heel Touches", "rx": "", "note": "Shoulders up"}, {"code": "H2", "name": "Hollow Holds", "rx": "", "note": "Low back down"}]}], "startText": "Go to your first Tabata", "firstWhere": "Tabata 1 of 8 · Round 1 of 8", "howTo": "Alternate the two exercises each round. 1 min between Tabatas.", "date": "May 3"};</script>
+<script src="../../assets/voices.js"></script>
+<script src="../../assets/timer.js"></script>
+</body>
+</html>

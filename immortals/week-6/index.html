@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16181d">
+<title>Immortals Week 6 · Day 4 Timer</title>
+<meta name="description" content="Hypertrophy 1 · 4 pods × 4 · 45/15 · 2 rounds · 2 min between pods">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/timer.css">
+</head>
+<body>
+<div class="board" id="board" data-phase="idle">
+  <div class="top">
+    <div class="wk" id="wk">Day 4<small id="sum"></small></div>
+    <div class="remain" id="remain"></div>
+  </div>
+  <div class="main" aria-live="polite">
+    <div class="phase" id="phase">Get ready</div>
+    <div class="clock" id="clock">0:10</div>
+    <div class="now" id="now"></div>
+    <div class="next" id="next"></div>
+    <div class="where" id="where"></div>
+  </div>
+  <div style="display:grid;gap:12px">
+    <div class="bar"><i id="bar"></i></div>
+    <div class="controls">
+      <button id="back" aria-label="Back one step">◀◀</button>
+      <button id="go" class="primary">Start</button>
+      <button id="skip" aria-label="Skip to next step">▶▶</button>
+      <button id="reset">Reset</button>
+      <button id="sound" aria-label="Change the sound">Martin</button>
+    </div>
+    <div class="hint" id="hint"></div>
+  </div>
+</div>
+<section class="plan">
+  <div class="plan-inner">
+    <h2 id="plan-title">Day 4 circuit</h2>
+    <p id="plan-desc"></p>
+    <div class="groups" id="groups"></div>
+  </div>
+</section>
+<script>window.CIRCUIT = {"team": "Immortals", "week": "Week 6", "title": "Week 6", "summary": "Hypertrophy 1 · 4 pods × 4 · 45/15 · 2 rounds · 2 min between pods", "getReady": 10, "format": "pods", "params": {"rounds": 2, "work": 45, "rest": 15, "change": 120}, "groups": [{"label": "Pod A", "meta": "2 rounds · 45s on / 15s off", "items": [{"code": "A1", "name": "Bench Press Touch & Go", "rx": "", "note": "Slow lowering"}, {"code": "A2", "name": "Db Seal Row", "rx": "", "note": "Squeeze at top"}, {"code": "A3", "name": "Db Shoulder Press", "rx": "", "note": "Ribs down"}, {"code": "A4", "name": "Chin-Ups", "rx": "", "note": "Band if needed"}]}, {"label": "Pod B", "meta": "2 rounds · 45s on / 15s off", "items": [{"code": "B1", "name": "Goblet Squat", "rx": "", "note": "Sit deep"}, {"code": "B2", "name": "Bulgarian Split Squat Db", "rx": "", "note": "Front knee over toes"}, {"code": "B3", "name": "Db RDL", "rx": "", "note": "Hips back"}, {"code": "B4", "name": "Db Lateral Step Up", "rx": "", "note": "Control the step down"}]}, {"label": "Pod C", "meta": "2 rounds · 45s on / 15s off", "items": [{"code": "C1", "name": "Alternating Db Snatch", "rx": "", "note": "Smooth, switch arms"}, {"code": "C2", "name": "Db Push Press", "rx": "", "note": "Dip and drive"}, {"code": "C3", "name": "Dumbbell Clean into Rotational Press", "rx": "", "note": "Clean, rotate, press"}, {"code": "C4", "name": "Med Ball Slams", "rx": "", "note": "Full reach, then slam"}]}, {"label": "Pod D", "meta": "2 rounds · 45s on / 15s off", "items": [{"code": "D1", "name": "Db Curls", "rx": "", "note": "No swinging"}, {"code": "D2", "name": "Db Skull Crushers (get a lat stretch)", "rx": "", "note": "Elbows still"}, {"code": "D3", "name": "Landmine Rotation-Pivot", "rx": "", "note": "Pivot the back foot"}, {"code": "D4", "name": "Hollow Holds", "rx": "", "note": "Low back down"}]}], "startText": "Go to your first station", "firstWhere": "Pod 1 of 4 · Round 1 of 2", "howTo": "Each group starts at a different station and rotates after every interval. 2 min between pods.", "date": "Nov 9"};</script>
+<script src="../../assets/voices.js"></script>
+<script src="../../assets/timer.js"></script>
+</body>
+</html>

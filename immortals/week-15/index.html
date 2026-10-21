@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16181d">
+<title>Immortals Week 15 · Day 4 Timer</title>
+<meta name="description" content="Strength · 7 contrast pairs · heavy → explosive · 3 rounds · 60s rest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/timer.css">
+</head>
+<body>
+<div class="board" id="board" data-phase="idle">
+  <div class="top">
+    <div class="wk" id="wk">Day 4<small id="sum"></small></div>
+    <div class="remain" id="remain"></div>
+  </div>
+  <div class="main" aria-live="polite">
+    <div class="phase" id="phase">Get ready</div>
+    <div class="clock" id="clock">0:10</div>
+    <div class="now" id="now"></div>
+    <div class="next" id="next"></div>
+    <div class="where" id="where"></div>
+  </div>
+  <div style="display:grid;gap:12px">
+    <div class="bar"><i id="bar"></i></div>
+    <div class="controls">
+      <button id="back" aria-label="Back one step">◀◀</button>
+      <button id="go" class="primary">Start</button>
+      <button id="skip" aria-label="Skip to next step">▶▶</button>
+      <button id="reset">Reset</button>
+      <button id="sound" aria-label="Change the sound">Martin</button>
+    </div>
+    <div class="hint" id="hint"></div>
+  </div>
+</div>
+<section class="plan">
+  <div class="plan-inner">
+    <h2 id="plan-title">Day 4 circuit</h2>
+    <p id="plan-desc"></p>
+    <div class="groups" id="groups"></div>
+  </div>
+</section>
+<script>window.CIRCUIT = {"team": "Immortals", "week": "Week 15", "title": "Week 15", "summary": "Strength · 7 contrast pairs · heavy → explosive · 3 rounds · 60s rest", "getReady": 10, "format": "manual", "params": {"rounds": 3, "rest": 60, "unit": "Pair", "workText": "Do both exercises"}, "groups": [{"label": "Pair A", "meta": "3 rounds · 60s rest", "items": [{"code": "A1", "name": "Bench Press Touch & Go", "rx": "5 reps", "note": "Heavy, controlled"}, {"code": "A2", "name": "Plyometric Push-Ups", "rx": "5 reps", "note": "Explode off floor"}]}, {"label": "Pair B", "meta": "3 rounds · 60s rest", "items": [{"code": "B1", "name": "Goblet Squat", "rx": "5 reps", "note": "Heavy, sit deep"}, {"code": "B2", "name": "Jump Squats", "rx": "5 reps", "note": "Max height"}]}, {"label": "Pair C", "meta": "3 rounds · 60s rest", "items": [{"code": "C1", "name": "Bench Pull/Bench Row/Seal Row", "rx": "5 reps", "note": "Heavy, squeeze"}, {"code": "C2", "name": "Med Ball Slams", "rx": "8 reps", "note": "Slam hard"}]}, {"label": "Pair D", "meta": "3 rounds · 60s rest", "items": [{"code": "D1", "name": "Db Push Press", "rx": "5 reps", "note": "Heavy, legs drive"}, {"code": "D2", "name": "Wall Balls", "rx": "8 reps", "note": "Throw high"}]}, {"label": "Pair E", "meta": "3 rounds · 60s rest", "items": [{"code": "E1", "name": "Pull-Ups", "rx": "5 reps", "note": "Add weight if easy"}, {"code": "E2", "name": "Alternating Db Snatch", "rx": "6 reps", "note": "Fast, switch arms"}]}, {"label": "Pair F", "meta": "3 rounds · 60s rest", "items": [{"code": "F1", "name": "Db Reverse Lunge", "rx": "5 reps each leg", "note": "Heavy, knee to floor"}, {"code": "F2", "name": "Box Jumps", "rx": "5 reps", "note": "Step down"}]}, {"label": "Pair G", "meta": "3 rounds · 60s rest", "items": [{"code": "G1", "name": "Db Curls", "rx": "10 reps", "note": "No swinging"}, {"code": "G2", "name": "Tricep Pushdown Rope", "rx": "10 reps", "note": "Elbows pinned"}]}], "startText": "Go to your first pair", "firstWhere": "Pair 1 of 7 · Round 1 of 3", "howTo": "The timer waits while you work: tap \"Rest\" when the group finishes both exercises, and it counts the rest down.", "date": "Jan 11"};</script>
+<script src="../../assets/voices.js"></script>
+<script src="../../assets/timer.js"></script>
+</body>
+</html>

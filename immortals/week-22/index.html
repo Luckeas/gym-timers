@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16181d">
+<title>Immortals Week 22 · Day 4 Timer</title>
+<meta name="description" content="Deload · 15 stations · 30/10 × 3 per station · 30s to next station">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/timer.css">
+</head>
+<body>
+<div class="board" id="board" data-phase="idle">
+  <div class="top">
+    <div class="wk" id="wk">Day 4<small id="sum"></small></div>
+    <div class="remain" id="remain"></div>
+  </div>
+  <div class="main" aria-live="polite">
+    <div class="phase" id="phase">Get ready</div>
+    <div class="clock" id="clock">0:10</div>
+    <div class="now" id="now"></div>
+    <div class="next" id="next"></div>
+    <div class="where" id="where"></div>
+  </div>
+  <div style="display:grid;gap:12px">
+    <div class="bar"><i id="bar"></i></div>
+    <div class="controls">
+      <button id="back" aria-label="Back one step">◀◀</button>
+      <button id="go" class="primary">Start</button>
+      <button id="skip" aria-label="Skip to next step">▶▶</button>
+      <button id="reset">Reset</button>
+      <button id="sound" aria-label="Change the sound">Martin</button>
+    </div>
+    <div class="hint" id="hint"></div>
+  </div>
+</div>
+<section class="plan">
+  <div class="plan-inner">
+    <h2 id="plan-title">Day 4 circuit</h2>
+    <p id="plan-desc"></p>
+    <div class="groups" id="groups"></div>
+  </div>
+</section>
+<script>window.CIRCUIT = {"team": "Immortals", "week": "Week 22", "title": "Week 22 - Deload", "summary": "Deload · 15 stations · 30/10 × 3 per station · 30s to next station", "getReady": 10, "format": "stations", "params": {"sets": 3, "work": 30, "rest": 10, "move": 30}, "groups": [{"label": "Stations", "meta": "30s on / 10s off × 3 per station · 30s to next station", "items": [{"code": "1", "name": "Regular Push-Ups", "rx": "", "note": "Smooth reps"}, {"code": "2", "name": "Neutral Grip Pull-Down", "rx": "", "note": "Full stretch"}, {"code": "3", "name": "Wall Sit", "rx": "", "note": "Thighs parallel"}, {"code": "4", "name": "Dead Bug with Band Pullover", "rx": "", "note": "Low back down"}, {"code": "5", "name": "Arnold Press", "rx": "", "note": "Light, ribs down"}, {"code": "6", "name": "Db Walking Lunge", "rx": "", "note": "Tall chest"}, {"code": "7", "name": "Kneeling Pallof Press", "rx": "", "note": "Switch sides at 15s"}, {"code": "8", "name": "Db Seal Row", "rx": "", "note": "Squeeze at top"}, {"code": "9", "name": "Glute Bridge", "rx": "", "note": "Squeeze glutes"}, {"code": "10", "name": "Russian Twist", "rx": "", "note": "Rotate from trunk"}, {"code": "11", "name": "Hammer Curls", "rx": "", "note": "No swinging"}, {"code": "12", "name": "Db Step up", "rx": "", "note": "Alternate legs"}, {"code": "13", "name": "Side Plank Db Rotation", "rx": "", "note": "Switch sides at 15s"}, {"code": "14", "name": "Tricep Pushdown Rope", "rx": "", "note": "Elbows pinned"}, {"code": "15", "name": "Plank With Arm/Leg Lift", "rx": "", "note": "Hips square"}]}], "startText": "Go to your first station", "firstWhere": "Station 1 of 15", "howTo": "Do all your sets at a station, then move on at \"Next station\". Groups start at different stations.", "date": "Mar 1"};</script>
+<script src="../../assets/voices.js"></script>
+<script src="../../assets/timer.js"></script>
+</body>
+</html>
