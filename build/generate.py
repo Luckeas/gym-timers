@@ -64,10 +64,12 @@ def parse(title, wk):
                  startText='Go to your first pod', firstWhere='Pod 1 of %d · Minute 1 of %d' % (len(groups), mins),
                  howTo='At each "Start", do the next exercise\'s reps, then rest for the rest of the minute.')
     elif 'tabata' in s:
-        c.update(format='tabata', params={'rounds': 8, 'work': 20, 'rest': 10, 'between': 60},
+        mb = re.search(r'(\d+)s between', s); mm = re.search(r'(\d+) min between', s)
+        between = int(mb.group(1)) if mb else int(mm.group(1)) * 60 if mm else 60
+        c.update(format='tabata', params={'rounds': 8, 'work': 20, 'rest': 10, 'between': between},
                  groups=mk_groups(lambda gi, k: 'Tabata ' + k, lambda it: '', lambda gi, its: '8 × 20s on / 10s off, alternating the two'),
                  startText='Go to your first Tabata', firstWhere='Tabata 1 of %d · Round 1 of 8' % len(groups),
-                 howTo='Alternate the two exercises each round. 1 min between Tabatas.')
+                 howTo='Alternate the two exercises each round. %ds between Tabatas.' % between)
     elif 'race piece' in s:
         c.update(format='race', params={'rounds': 3, 'block': 30, 'rest': 90},
                  groups=mk_groups(lambda gi, k: 'Piece ' + k, lambda it: '', lambda gi, its: '4 × 30s straight, 90s rest · 3 rounds'),
@@ -99,8 +101,10 @@ def parse(title, wk):
                  howTo='Switch to the second exercise at the cue with no rest. 1 min to move to the next superset.')
     elif 'laps' in s:
         laps = int(first['F'])
-        c.update(format='laps', params={'laps': laps, 'work': secs(first['G']), 'rest': secs(first['H']), 'lapBreak': 120},
-                 groups=[{'label': 'Stations', 'meta': '%s on / %s off · %d laps · 2 min between laps' % (first['G'], first['H'], laps),
+        ml = re.search(r'(\d+) min between laps', s)
+        lap_break = int(ml.group(1)) * 60 if ml else 120
+        c.update(format='laps', params={'laps': laps, 'work': secs(first['G']), 'rest': secs(first['H']), 'lapBreak': lap_break},
+                 groups=[{'label': 'Stations', 'meta': '%s on / %s off · %d laps · %d min between laps' % (first['G'], first['H'], laps, lap_break // 60),
                           'items': [{'code': it['code'], 'name': it['name'], 'rx': '', 'note': note_clean(it['note'])} for it in items]}],
                  startText='Go to your first station', firstWhere='Lap 1 of %d' % laps,
                  howTo='Each group starts at a different station and rotates after every interval.')
