@@ -1,3 +1,5 @@
+/* Inside the DB Speed app (iframe): show only the clock and controls. The app lists the exercises with demo videos. */
+(function(){let inFrame=false;try{inFrame=window.self!==window.top}catch(e){inFrame=true}if(inFrame||/[?&]embed\b/.test(location.search))document.documentElement.classList.add('embed')})();
 /* Gym circuit timer engine. Each page sets window.CIRCUIT (see the week pages) and loads
    voices.js + this file. Everyone works at the same time at different stations, so the
    screen calls structure (work, rest, rotate, round), never a specific exercise. */

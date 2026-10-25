@@ -79,3 +79,7 @@ button:disabled { opacity: .4; cursor: default; }
 .weeks time { font-family: var(--display); font-weight: 600; color: var(--ink-dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
 @media (max-width: 480px) { .weeks a { grid-template-columns: 1fr auto; } .weeks span { grid-column: 1 / -1; } }
 @media (prefers-reduced-motion: reduce) { .board { transition: none; } }
+
+/* Embedded in the app: timer only, sized to the frame */
+.embed .plan { display: none; }
+.embed .board { min-height: 100vh; min-height: 100dvh; }
