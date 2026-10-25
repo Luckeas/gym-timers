@@ -296,6 +296,10 @@
     const manual = steps.some(s => s.manual);
     $('plan-title').textContent = c.week + ' · Day 4 circuit';
     $('plan-desc').textContent = c.summary + '. ' + (manual ? 'Timed rests total about ' : 'About ') + Math.round(total / 60) + ' minutes' + (manual ? ', plus your sets.' : ', including a ' + (c.getReady || 10) + '-second countdown.') + (c.howTo ? ' ' + c.howTo : '');
+    // Inside the app, hand the explanation to the app so it can show it above the timer.
+    if (document.documentElement.classList.contains('embed') && window.parent !== window) {
+      try { window.parent.postMessage({ dbspeedTimer: 1, url: location.href.split('?')[0], desc: $('plan-desc').textContent }, '*'); } catch (e) {}
+    }
     $('groups').innerHTML = c.groups.map(g =>
       '<div class="group"><h3>' + esc(g.label) + '</h3><ol>' +
       g.items.map(it => '<li><b>' + esc(it.code) + '</b><span>' + esc(it.name) + (it.rx || it.note ? '<small>' + esc([it.rx, it.note].filter(Boolean).join(' · ')) + '</small>' : '') + '</span></li>').join('') +
