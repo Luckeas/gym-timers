@@ -136,7 +136,7 @@ PAGE = '''<!doctype html>
 <meta name="description" content="{desc}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="../../assets/timer.css">
+<link rel="stylesheet" href="../../assets/timer.css?v=3">
 </head>
 <body>
 <div class="board" id="board" data-phase="idle">
@@ -172,7 +172,7 @@ PAGE = '''<!doctype html>
 </section>
 <script>window.CIRCUIT = {circuit};</script>
 <script src="../../assets/voices.js"></script>
-<script src="../../assets/timer.js"></script>
+<script src="../../assets/timer.js?v=3"></script>
 </body>
 </html>
 '''
@@ -186,7 +186,7 @@ INDEX = '''<!doctype html>
 <title>{team} Circuit Timers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="../assets/timer.css">
+<link rel="stylesheet" href="../assets/timer.css?v=3">
 </head>
 <body>
 <main class="index">
