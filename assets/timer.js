@@ -156,7 +156,7 @@
   const VOICE_NAMES = { martin: 'Martin', anime: 'Anime Girl' };
   const SOUND_ORDER = ['martin', 'anime', 'classic', 'bell', 'whistle'];
   let soundMode = 'martin';
-  try { soundMode = localStorage.getItem('gymTimerSound') || 'martin'; } catch (e) {}
+  try { soundMode = localStorage.getItem('gymTimerSound') || 'classic'; } catch (e) {}
   if (!SOUND_ORDER.includes(soundMode)) soundMode = 'martin';
   const isVoice = () => !!VOICE_NAMES[soundMode];
   const beep = () => THEMES[soundMode] || THEMES.classic;
